@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Emotion</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: #1b1b1b;
+    }
+      #overlayText {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: white;
+      pointer-events: none; /* 不挡鼠标交互 */
+      z-index: 10; /* 永远在 canvas 上面 */
+    }
+  </style>
+  <style>
+    @font-face{font-family:'QWERTYpe';src:url('../Relationship/assets/QWERTYpe-1.ttf') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
+    body{font-family:QWERTYpe, sans-serif}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+    <div id="overlayText"><- Drag to adjust perspective -></div>
+    
+</body>
+
+</html>
