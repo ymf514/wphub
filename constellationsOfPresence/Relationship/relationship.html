@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Relational Time</title>
+    <style>
+      @font-face{font-family:'QWERTYpe';src:url('assets/QWERTYpe-1.ttf') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
+  /* Make background transparent so the fixed background video is visible */
+  html,body{height:100%;margin:0;font-family:QWERTYpe,Inter,Arial,Helvetica,sans-serif;background:transparent;color:#000000}
+      /* Background video: cover entire viewport and stay behind content */
+      #bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none}
+      /* Ensure p5 root sits above the background video */
+      #p5-root{position:relative;z-index:1;width:100%;height:100vh;overflow:hidden}
+      /* Header text at the top of the page */
+      .page-header{position:fixed;left:0;right:0;top:18px;z-index:2;pointer-events:none;display:flex;align-items:center;justify-content:center}
+      .page-header .title{font-size:19px;line-height:1;font-weight:400;color:#ffffff;font-family:QWERTYpe,Inter,Arial,Helvetica,sans-serif}
+      /* Footer text at the bottom of the page (subtitle only) */
+      .page-footer{position:fixed;left:0;right:0;bottom:18px;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+  .page-footer .subtitle{font-size:12px;line-height:1;font-weight:400;color:#ffffff;font-family:QWERTYpe,Inter,Arial,Helvetica,sans-serif}
+    </style>
+  </head>
+  <body>
+    <!-- Top header with quote -->
+    <div class="page-header" aria-hidden="true">
+      <div class="title">"People are the sum total of societal relationships"</div>
+    </div>
+    <!-- Fullscreen background video (autoplay, muted, loop, playsinline for mobile) -->
+    <video id="bg-video" autoplay muted loop playsinline>
+      <source src="assets/昼夜更替-2.mp4" type="video/mp4">
+      <!-- Fallback text if video not supported -->
+      您的浏览器不支持背景视频。
+    </video>
+    <div id="p5-root"></div>
+
+    <!-- Bottom footer with subtitle -->
+    <div class="page-footer" aria-hidden="true">
+      <div class="subtitle">Data from ourworldindata.org 'Who Americans spend their time with'</div>
+    </div>
+
+    <!-- p5 from CDN to ensure correct loading -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
