@@ -9,7 +9,7 @@ let volume = 0;
 let smoothVolume = 0;
 let lowVolumeCounter = 0;
 // Threshold for volume (normalized 0-1). Set to 0.05 for moderate sensitivity.
-const LOW_VOLUME_THRESHOLD = 0.04; // normalized threshold (0-1)
+const LOW_VOLUME_THRESHOLD = 0.01; // normalized threshold (0-1)
 const MID_VOLUME_THRESHOLD = 0.30; // Approximately 35 decibels threshold - extended range
 const NUM_CENTERS = 1;
 let micEnabled = false;
