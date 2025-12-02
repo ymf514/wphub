@@ -10,6 +10,22 @@
       margin: 0;
       overflow: hidden;
     }
+    
+    .video-icon {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 48px;
+      cursor: pointer;
+      z-index: 1000;
+      text-decoration: none;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+    }
+    
+    .video-icon:hover {
+      transform: scale(1.2);
+    }
   </style>
   <style>
     /* Use project QWERTYpe font for page text */
@@ -21,5 +37,6 @@
   <script src="sketch.js"></script>
 </head>
 <body>
+  <a href="video.html" target="_blank" class="video-icon">🎞️</a>
 </body>
 </html>
