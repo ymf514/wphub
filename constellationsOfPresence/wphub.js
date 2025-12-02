@@ -9,8 +9,13 @@ let letter;
 // navigation images replacing text labels
 let navImages = []; // will hold Pic-01.png, Pic-02.png, Pic-03.png
 let navLinks = ['Poster/index.html', 'RelationshipUniverse/index.html', 'Relationship/relationship.html']; // mapped to Pic-01, Pic-02, Pic-03
+let navNames = ['Personal Emotion', 'Collective Presence', 'Relational Time']; // names for each navigation item
 let navPositions = []; // {x, y, size, rotation, targetRotation}
 let navPositionsInitialized = false;
+
+// Info panel at bottom
+let infoPanelHeight = 75;
+let currentHoverText = 'Try touching/clicking elements on the screen';
 
 function preload() {
   tear = loadImage("tear.gif");
@@ -68,7 +73,7 @@ function draw() {
     // compute eye centers (matches openEye/eye.js pupil positions)
     const leftEyeX = width * 6/20;
     const rightEyeX = width * 14/20;
-    const eyeY = height / 2;
+    const eyeY = height / 2 - R/3; // eye moved up by R/3
     const safeRadius = R * 1.5; // avoid overlapping eye circles
     
     // generate random non-overlapping positions avoiding eyes
@@ -80,7 +85,8 @@ function draw() {
       while(!validPos && attempts < 100){
         attempts++;
         x = random(imgSize/2 + 20, width - imgSize/2 - 20);
-        y = random(imgSize/2 + 20, height - imgSize/2 - 20);
+        // avoid info panel area at bottom
+        y = random(imgSize/2 + 20, height - infoPanelHeight - imgSize/2 - 20);
         
         // check distance from left eye
         const distLeft = dist(x, y, leftEyeX, eyeY);
@@ -127,6 +133,7 @@ function draw() {
   let hoverIndex = -1;
   
   // check which image is being hovered
+  currentHoverText = 'Try touching/clicking elements on the screen'; // reset to default
   if(!isMissed){
     for(let i = 0; i < navPositions.length; i++){
       const pos = navPositions[i];
@@ -134,6 +141,7 @@ function draw() {
       if(d < pos.size / 2){
         hovering = true;
         hoverIndex = i;
+        currentHoverText = navNames[i]; // update hover text
         break;
       }
     }
@@ -194,8 +202,32 @@ function draw() {
   pop();
   }
   
+  // Draw info panel at bottom
+  drawInfoPanel();
+  
 }
 
+// Draw white info panel at bottom
+function drawInfoPanel() {
+  push();
+  // white background bar
+  fill(255);
+  noStroke();
+  rect(0, height - infoPanelHeight, width, infoPanelHeight);
+  
+  // title text
+  fill(0);
+  textFont(letter);
+  textAlign(LEFT, TOP);
+  textSize(24);
+  text('Constellations of Presence', 20, height - infoPanelHeight + 15);
+  
+  // body text (hover info) - use default font
+  textFont('sans-serif');
+  textSize(14);
+  text(currentHoverText, 20, height - infoPanelHeight + 45);
+  pop();
+}
 
 function mousePressed() {
   // If user clicked on one of the navigation images, navigate to that page
