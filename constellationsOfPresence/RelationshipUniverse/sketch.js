@@ -37,17 +37,9 @@ let gradientOffset = 0;
 let cursorRotation = 0;
 // (no 3D cursor model or offscreen buffer needed)
 
-// Video icon in bottom-left corner
-let videoIconSize = 48;
-let videoIconX = 30;
-let videoIconY; // will be set to height - 30 in setup
-let videoIconHover = false;
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  videoIconY = height - 30; // position from bottom
-  
   if(relFont) textFont(relFont);
   // Hide default cursor
   noCursor();
@@ -293,9 +285,6 @@ function draw() {
   // Draw custom cursor (sun triangles)
   drawCursor();
   
-  // Draw video icon in bottom-left corner
-  drawVideoIcon();
-  
   // Optional: Draw centers for debugging (comment out if not needed)
   // for (let center of centers) {
   //   fill(255, 100, 100, 100);
@@ -305,12 +294,6 @@ function draw() {
 
 // Allow user to click to retry microphone access or toggle debug info
 function mousePressed() {
-  // Check if click is on video icon
-  if (dist(mouseX, mouseY, videoIconX, videoIconY) < videoIconSize / 2) {
-    window.open('video.html', '_blank');
-    return;
-  }
-  
   // Check if click is on title area (top center region)
   if (mouseY < 75 && abs(mouseX - width / 2) < 200) {
     showDebugInfo = !showDebugInfo;
@@ -368,35 +351,8 @@ function drawCursor() {
 
 
 
-// Draw video icon with hover effect
-function drawVideoIcon() {
-  // Check hover state
-  videoIconHover = dist(mouseX, mouseY, videoIconX, videoIconY) < videoIconSize / 2;
-  
-  push();
-  textAlign(CENTER, CENTER);
-  let size = videoIconSize;
-  if (videoIconHover) {
-    size = videoIconSize * 1.2; // scale on hover
-    cursor(HAND);
-  }
-  textSize(size);
-  // Add glow effect
-  if (videoIconHover) {
-    // draw shadow for glow effect
-    fill(255, 255, 255, 100);
-    text('🎞️', videoIconX + 2, videoIconY + 2);
-  }
-  fill(255);
-  text('🎞️', videoIconX, videoIconY);
-  pop();
-}
-
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  
-  // Update video icon position
-  videoIconY = height - 30;
   
   // Regenerate stars for new canvas size
   stars = [];
